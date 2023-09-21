@@ -45,6 +45,29 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// ???What member variables should this take exclusive ownership of???
+ChatBot::ChatBot(const ChatBot &source)
+{
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode
+    
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+}
+ChatBot::ChatBot &operator=(const ChatBot &source)
+{
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode
+    
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 
