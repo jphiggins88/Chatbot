@@ -48,24 +48,84 @@ ChatBot::~ChatBot()
 // ???What member variables should this take exclusive ownership of???
 ChatBot::ChatBot(const ChatBot &source)
 {
+    std::cout << "Chatbot: Copy constructor\n";
+
+    _image = source._image;
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode
     
+    //source.image = nullptr;
+    //source.image = NULL;
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
 }
 ChatBot::ChatBot &operator=(const ChatBot &source)
 {
+    std::cout << "Chatbot: Copy assignment operator \n";
+    
+    if (this == &source) {
+        return *this;
+    }
+
+    _image = source._image;
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode
+
+    if (this != &other) {
+        delete _chatLogic;
+        _chatLogic = new ChatLogic(*other._chatLogic);
+    }
     
+    source.image = nullptr;
+    //source.image = NULL;
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
 
+    return *this;
+}
+Chatbot::ChatBot(ChatBot &&source) noexcept {
+    std::cout << "ChatBot: Move Constructor\n";
+
+    _image = other._image;
+    _currentNode = other._currentNode;
+    _rootNode = other._rootNode;
+    _chatLogic = other._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+
+    source.image = nullptr;
+    //source.image = NULL;
+    other._currentNode = nullptr;
+    other._rootNode = nullptr;
+    other._chatLogic = nullptr;
+}
+Chatbot::ChatBot::operator=(ChatBot &&source) noexcept {
+    std::cout << "ChatBot: Move assignment operator\n";
+
+    if (this == &source) {
+        return *this;
+    }
+    // if there already was an image in this, delete it
+    if (_image != NULL)
+    {
+        delete _image;
+        _image = NULL;
+    }
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _image = source._image;
+    //invalidate source pointers as ownership is moved
+    source._chatLogic = nullptr;
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._image = NULL;
     return *this;
 }
 ////
