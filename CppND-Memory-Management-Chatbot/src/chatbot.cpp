@@ -49,14 +49,11 @@ ChatBot::ChatBot(const ChatBot &source)
 {
     std::cout << "Chatbot: Copy constructor\n";
 
-    //_image = source._image;   // Which one ???
     _image = new  wxBitmap(*source._image);
-
-    //_currentNode = source._currentNode;     // needed???
     _chatLogic = source._chatLogic;
-    //_chatLogic->SetChatbotHandle(this); // needed???
     _rootNode = source._rootNode;
-    
+
+    _chatLogic->SetChatbotHandle(this); // needed???
 }
 
 
@@ -75,19 +72,11 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
         _image = NULL;
     }
 
-    //_image = source._image;   // which one???
     _image = new  wxBitmap(*source._image);
-    //_currentNode = source._currentNode; // needed???
-    _chatLogic = source._chatLogic;
-    //_chatLogic->SetChatbotHandle(this); // needed???
     _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
 
-    // needed???
-    //if (this != &source) {
-    //    delete _chatLogic;
-    //    _chatLogic = new ChatLogic(*other._chatLogic);
-    //}
-    
+    _chatLogic->SetChatbotHandle(this); // needed???
 
     return *this;
 }
@@ -96,14 +85,12 @@ ChatBot::ChatBot(ChatBot &&source) {
     std::cout << "ChatBot: Move Constructor\n";
 
     _image = source._image;
-    //_currentNode = source._currentNode; // needed???
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
-    //_chatLogic->SetChatbotHandle(this);     // needed???
 
-    //source.image = nullptr;
+    _chatLogic->SetChatbotHandle(this);     // needed???
+
     source._image = NULL;
-    //source._currentNode = nullptr;        // needed???
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
 }
@@ -114,24 +101,26 @@ ChatBot& ChatBot::operator=(ChatBot &&source) {
     if (this == &source) {
         return *this;
     }
-    // if there already was an image in this, delete it
+
     if (_image != NULL)
     {
         delete _image;
         _image = NULL;
     }
-    _chatLogic = source._chatLogic;
-    //_chatLogic->SetChatbotHandle(this);   //needed???
-    //_currentNode = source._currentNode;   //needed???
-    _rootNode = source._rootNode;
+
     _image = source._image;
-    //invalidate source pointers as ownership is moved
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    _chatLogic->SetChatbotHandle(this);   //needed???
+
     source._chatLogic = nullptr;
-    //source._currentNode = nullptr;    //needed???
     source._rootNode = nullptr;
     source._image = NULL;
+
     return *this;
 }
+
 ////
 //// EOF STUDENT CODE
 
@@ -179,6 +168,19 @@ void ChatBot::SetCurrentNode(GraphNode *node)
     std::mt19937 generator(int(std::time(0)));
     std::uniform_int_distribution<int> dis(0, answers.size() - 1);
     std::string answer = answers.at(dis(generator));
+
+    
+    
+    
+    // TODO ****************
+    
+    //_chatLogic->SetChatbotHandle(this);
+    // This is done in each Copy Constructor, Copy Assignment operator, Move Constructor, and Move Assignment operator
+    
+    // TODO ****************
+
+
+
 
     // send selected node answer to user
     _chatLogic->SendMessageToUser(answer);

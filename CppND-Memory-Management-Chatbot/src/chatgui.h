@@ -2,7 +2,6 @@
 #define CHATGUI_H_
 
 #include <wx/wx.h>
-
 #include <memory>
 
 class ChatLogic; // forward declaration
@@ -29,8 +28,6 @@ public:
     ChatBotPanelDialog(wxWindow *parent, wxWindowID id);
     ~ChatBotPanelDialog();
 
-
-
     //// Modified
     ////
 
@@ -40,8 +37,6 @@ public:
 
     ////
     //// EOF Modified
-
-
 
     // events
     void paintEvent(wxPaintEvent &evt);
