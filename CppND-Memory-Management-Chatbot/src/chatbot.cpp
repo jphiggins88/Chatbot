@@ -42,9 +42,6 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
-
 ChatBot::ChatBot(const ChatBot &source)
 {
     std::cout << "Chatbot: Copy constructor\n";
@@ -53,12 +50,10 @@ ChatBot::ChatBot(const ChatBot &source)
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
 
-    _chatLogic->SetChatbotHandle(this); // needed???
+    _chatLogic->SetChatbotHandle(this);
 }
 
-
 ChatBot& ChatBot::operator=(const ChatBot &source)
-//ChatBot::ChatBot &operator=(const ChatBot &source)
 {
     std::cout << "Chatbot: Copy assignment operator \n";
     
@@ -76,7 +71,7 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
 
-    _chatLogic->SetChatbotHandle(this); // needed???
+    _chatLogic->SetChatbotHandle(this);
 
     return *this;
 }
@@ -88,7 +83,7 @@ ChatBot::ChatBot(ChatBot &&source) {
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
 
-    _chatLogic->SetChatbotHandle(this);     // needed???
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = NULL;
     source._rootNode = nullptr;
@@ -112,17 +107,14 @@ ChatBot& ChatBot::operator=(ChatBot &&source) {
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
 
-    _chatLogic->SetChatbotHandle(this);   //needed???
+    _chatLogic->SetChatbotHandle(this);
 
-    source._chatLogic = nullptr;
-    source._rootNode = nullptr;
     source._image = NULL;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
 
     return *this;
 }
-
-////
-//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
@@ -168,19 +160,6 @@ void ChatBot::SetCurrentNode(GraphNode *node)
     std::mt19937 generator(int(std::time(0)));
     std::uniform_int_distribution<int> dis(0, answers.size() - 1);
     std::string answer = answers.at(dis(generator));
-
-    
-    
-    
-    // TODO ****************
-    
-    //_chatLogic->SetChatbotHandle(this);
-    // This is done in each Copy Constructor, Copy Assignment operator, Move Constructor, and Move Assignment operator
-    
-    // TODO ****************
-
-
-
 
     // send selected node answer to user
     _chatLogic->SendMessageToUser(answer);
