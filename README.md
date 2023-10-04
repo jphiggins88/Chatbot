@@ -1,7 +1,6 @@
 # CPPND: Memory Management Chatbot
 
-This is the project is based on a project from the Udacity Memory management course.
-https://www.udacity.com/course/c-plus-plus-nanodegree--nd213
+This is the project is based on a project from the [Udacity Memory Management Course](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213)
 
 ## Concepts covered
 
