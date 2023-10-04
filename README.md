@@ -1,21 +1,21 @@
 # CPPND: Memory Management Chatbot
 
 This is the project is based on a project from the Udacity Memory management course.
-(https://www.udacity.com/course/c-plus-plus-nanodegree--nd213)
+https://www.udacity.com/course/c-plus-plus-nanodegree--nd213
 
 ## Concepts covered
 
-The Rule of 3
-The Rule of 5
-Move Semantics
-Unique Pointers and Shared Pointers
-General memory management safety
+* The Rule of 3
+* The Rule of 5
+* Move Semantics
+* Unique Pointers and Shared Pointers
+* General memory management safety
 
 ## Example of running project
 
 <img src="images/chatbot_demo.gif"/>
 
-The ChatBot code creates a dialogue where users can ask questions about some aspects of memory management in C++. After the knowledge base of the chatbot has been loaded from a text file, a knowledge graph representation is created in computer memory, where chatbot answers represent the graph nodes and user queries represent the graph edges. After a user query has been sent to the chatbot, the Levenshtein distance is used to identify the most probable answer. The code is fully functional as-is and uses raw pointers to represent the knowledge graph and interconnections between objects throughout the project.
+The ChatBot code creates a dialogue where users can ask questions about some aspects of memory management in C++. After the knowledge base of the chatbot has been loaded from a text file, a knowledge graph representation is created in computer memory, where chatbot answers represent the graph nodes and user queries represent the graph edges. After a user query has been sent to the chatbot, the Levenshtein distance is used to identify the most probable answer.
 
 ## Dependencies
 
